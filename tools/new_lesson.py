@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 COURSES = {
     "dm": "Дискретная математика",
     "aisd": "Алгоритмы и структуры данных",
-    "cpp": "C++ / алгоритмическая практика",
+    "cpp": "Алгоритмическая практика на C++",
     "linal": "Линейная алгебра",
     "matan": "Математический анализ",
     "op": "Основы программирования",
@@ -37,7 +37,7 @@ def safe_topic(topic: str) -> str:
 
 
 def update_index(course: str) -> None:
-    course_dir = ROOT / "дисциплины" / course
+    course_dir = ROOT / "дисциплины" / COURSES[course]
     index_path = course_dir / "README.md"
     content = index_path.read_text(encoding="utf-8")
     if content.count(START) != 1 or content.count(END) != 1:
@@ -64,35 +64,32 @@ def update_index(course: str) -> None:
 
 
 def create_lesson(course: str, lesson_date: date, topic: str, kind: str) -> Path:
-    if course not in COURSES:
+    course_key = next((slug for slug, name in COURSES.items()
+                       if course.casefold() in {slug.casefold(), name.casefold()}), None)
+    if course_key is None:
         raise ValueError(f"Неизвестная дисциплина: {course}")
     topic = safe_topic(topic)
-    folder = ROOT / "дисциплины" / course / "лекции" / f"{lesson_date.isoformat()} ({topic})"
+    folder = ROOT / "дисциплины" / COURSES[course_key] / "лекции" / f"{lesson_date.isoformat()} ({topic})"
     if folder.exists():
         raise FileExistsError(f"Занятие уже существует: {folder}")
+    template = (ROOT / "ШАБЛОН_КОНСПЕКТА.md").read_text(encoding="utf-8")
     folder.mkdir(parents=True)
     note = folder / "конспект.md"
-    note.write_text(
-        f"# {lesson_date.isoformat()} ({topic})\n\n"
-        f"- **Дисциплина:** {COURSES[course]}\n"
-        f"- **Вид занятия:** {kind}\n"
-        f"- **Дата:** {lesson_date.isoformat()}\n"
-        "- **Источник материалов:** требуется указать\n"
-        "- **Проверено:** требуется указать\n\n"
-        "## Кратко\n\nЧто изучали на занятии.\n\n"
-        "## Главы и вопросы\n\n### 1. Название главы\n\nОпределения, идеи, формулы и примеры.\n\n"
-        "## Что нужно повторить\n\n- [ ] Вопрос или тема\n\n"
-        "## Задания и сроки\n\nЕсли есть новый срок, добавьте его в корневой файл `ДЕДЛАЙНЫ.md`.\n\n"
-        "## Материалы\n\n- Добавьте сюда ссылки или имена файлов из этой папки.\n",
-        encoding="utf-8", newline="\n",
-    )
-    update_index(course)
+    for placeholder, value in {
+        "{{DATE}}": lesson_date.isoformat(),
+        "{{TOPIC}}": topic,
+        "{{COURSE}}": COURSES[course_key],
+        "{{KIND}}": kind,
+    }.items():
+        template = template.replace(placeholder, value)
+    note.write_text(template, encoding="utf-8", newline="\n")
+    update_index(course_key)
     return note
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--course", required=True, choices=sorted(COURSES))
+    parser.add_argument("--course", required=True, help="Русское название дисциплины или её короткий код")
     parser.add_argument("--date", required=True, type=date.fromisoformat)
     parser.add_argument("--topic", required=True)
     parser.add_argument("--kind", default="лекция", choices=["лекция", "практика", "семинар", "другое"])

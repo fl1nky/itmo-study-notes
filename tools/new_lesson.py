@@ -108,7 +108,6 @@ def create_lesson(course: str, lesson_date: date, topic: str, kind: str) -> Path
         "{{DATE}}": lesson_date.strftime("%d.%m.%Y"),
         "{{TOPIC}}": topic,
         "{{COURSE}}": COURSES[course_key],
-        "{{KIND}}": kind,
     }.items():
         template = template.replace(placeholder, value)
     note.write_text(template, encoding="utf-8", newline="\n")

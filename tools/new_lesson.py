@@ -23,6 +23,7 @@ COURSES = {
 START = "<!-- LESSONS:START -->"
 END = "<!-- LESSONS:END -->"
 NOTE_PATTERN = re.compile(r"^(.+) \((\d{2}\.\d{2}\.\d{4})\)\.md$")
+KIND_DIRECTORIES = {"лекция": "лекции", "практика": "практики", "семинар": "практики"}
 
 
 def parse_lesson_date(value: str) -> date:
@@ -46,15 +47,31 @@ def safe_topic(topic: str) -> str:
     return topic
 
 
-def update_index(course: str) -> None:
+def lesson_directory(kind: str) -> str:
+    try:
+        return KIND_DIRECTORIES[kind]
+    except KeyError as error:
+        raise ValueError("Выберите вид занятия: лекция, практика или семинар") from error
+
+
+def update_index(course: str, kind: str = "лекция") -> None:
     course_dir = ROOT / "дисциплины" / COURSES[course]
-    lecture_dir = course_dir / "лекции"
-    index_path = lecture_dir / "README.md"
+    folder = lesson_directory(kind)
+    lesson_dir = course_dir / folder
+    lesson_dir.mkdir(parents=True, exist_ok=True)
+    index_path = lesson_dir / "README.md"
+    if not index_path.exists():
+        index_path.write_text(
+            f"# {folder.capitalize()} — {COURSES[course]}\n\n"
+            "Каждое занятие — отдельный файл `Тема (ДД.ММ.ГГГГ).md`.\n\n"
+            f"## Занятия\n\n{START}\nПока занятий нет.\n{END}\n",
+            encoding="utf-8", newline="\n",
+        )
     content = index_path.read_text(encoding="utf-8")
     if content.count(START) != 1 or content.count(END) != 1:
         raise ValueError(f"В индексе {index_path} нет маркеров списка занятий")
     lessons: list[tuple[date, str, Path]] = []
-    for note in lecture_dir.glob("*.md"):
+    for note in lesson_dir.glob("*.md"):
         if note.name == "README.md":
             continue
         match = NOTE_PATTERN.fullmatch(note.name)
@@ -65,7 +82,7 @@ def update_index(course: str) -> None:
     if lessons:
         rows = ["| Тема | Дата занятия | Конспект |", "|---|---|---|"]
         for lesson_date, topic, note in lessons:
-            relative = quote(note.relative_to(lecture_dir).as_posix(), safe="/")
+            relative = quote(note.relative_to(lesson_dir).as_posix(), safe="/")
             rows.append(f"| {topic.replace('|', r'\|')} | {lesson_date:%d.%m.%Y} | [Открыть]({relative}) |")
         listing = "\n".join(rows)
     else:
@@ -81,12 +98,12 @@ def create_lesson(course: str, lesson_date: date, topic: str, kind: str) -> Path
     if course_key is None:
         raise ValueError(f"Неизвестная дисциплина: {course}")
     topic = safe_topic(topic)
-    lecture_dir = ROOT / "дисциплины" / COURSES[course_key] / "лекции"
-    note = lecture_dir / f"{topic} ({lesson_date:%d.%m.%Y}).md"
+    lesson_dir = ROOT / "дисциплины" / COURSES[course_key] / lesson_directory(kind)
+    note = lesson_dir / f"{topic} ({lesson_date:%d.%m.%Y}).md"
     if note.exists():
         raise FileExistsError(f"Занятие уже существует: {note}")
     template = (ROOT / "ШАБЛОН_КОНСПЕКТА.md").read_text(encoding="utf-8")
-    lecture_dir.mkdir(parents=True, exist_ok=True)
+    lesson_dir.mkdir(parents=True, exist_ok=True)
     for placeholder, value in {
         "{{DATE}}": lesson_date.strftime("%d.%m.%Y"),
         "{{TOPIC}}": topic,
@@ -95,7 +112,7 @@ def create_lesson(course: str, lesson_date: date, topic: str, kind: str) -> Path
     }.items():
         template = template.replace(placeholder, value)
     note.write_text(template, encoding="utf-8", newline="\n")
-    update_index(course_key)
+    update_index(course_key, kind)
     return note
 
 
@@ -104,7 +121,8 @@ def main() -> None:
     parser.add_argument("--course", required=True, help="Русское название дисциплины или её короткий код")
     parser.add_argument("--date", required=True, type=parse_lesson_date, help="Дата занятия: ДД.ММ.ГГГГ")
     parser.add_argument("--topic", required=True)
-    parser.add_argument("--kind", default="лекция", choices=["лекция", "практика", "семинар", "другое"])
+    parser.add_argument("--kind", default="лекция", choices=list(KIND_DIRECTORIES),
+                        help="Лекция — в лекции; практика или семинар — в практики")
     args = parser.parse_args()
     print(create_lesson(args.course, args.date, args.topic, args.kind))
 

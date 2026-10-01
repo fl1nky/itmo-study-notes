@@ -62,6 +62,23 @@ class NewLessonTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             new_lesson.parse_lesson_date("31.02.2026")
 
+    def test_lecture_and_practice_with_same_topic_are_kept_separate(self) -> None:
+        template = (new_lesson.ROOT / "ШАБЛОН_КОНСПЕКТА.md").read_text(encoding="utf-8")
+        with tempfile.TemporaryDirectory() as temp, patch.object(new_lesson, "ROOT", Path(temp)):
+            (Path(temp) / "ШАБЛОН_КОНСПЕКТА.md").write_text(template, encoding="utf-8")
+            lecture = new_lesson.create_lesson("dm", date(2026, 10, 1), "Отношения", "лекция")
+            lecture.write_text("# Отношения\n\nМатериал лекции.\n", encoding="utf-8")
+            lecture_index = (lecture.parent / "README.md").read_text(encoding="utf-8")
+            practice = new_lesson.create_lesson("dm", date(2026, 10, 1), "Отношения", "практика")
+            self.assertEqual(practice.parent.name, "практики")
+            self.assertNotEqual(practice, lecture)
+            self.assertEqual(lecture.read_text(encoding="utf-8"), "# Отношения\n\nМатериал лекции.\n")
+            self.assertEqual((lecture.parent / "README.md").read_text(encoding="utf-8"), lecture_index)
+            practice_index = (practice.parent / "README.md").read_text(encoding="utf-8")
+            link = re.search(r"\[Открыть\]\(([^)]+)\)", practice_index)
+            self.assertIsNotNone(link)
+            self.assertEqual(practice.parent / unquote(link.group(1)), practice)
+
     def test_rejects_invalid_windows_filename(self) -> None:
         with self.assertRaises(ValueError):
             new_lesson.safe_topic("Введение: множества")

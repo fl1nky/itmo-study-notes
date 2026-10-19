@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT English · слова и фразы</title>
+<style>
+:root{color-scheme:light;--ink:#182c43;--muted:#5e7187;--blue:#245bde;--line:#dce5ee}
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:#f4f7fb;color:var(--ink);font:16px/1.55 system-ui,sans-serif}
+main{max-width:920px;margin:auto;padding:40px 20px 56px}header{display:flex;justify-content:space-between;align-items:start;gap:20px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:750}h1{font-size:clamp(30px,5vw,44px);letter-spacing:-.04em;margin:6px 0 10px;line-height:1.15}
+p{margin:8px 0}.muted{color:var(--muted)}a{color:var(--blue)}.badge{background:#e6edff;color:var(--blue);padding:8px 12px;border-radius:30px;white-space:nowrap;font-size:13px}
+.controls{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:14px;margin:26px 0 20px}label{font-size:13px;font-weight:650}select{display:block;width:100%;margin-top:6px;background:white;border:1px solid var(--line);border-radius:12px;padding:12px 10px;color:var(--ink);font:inherit}
+.progress-row{display:flex;gap:12px;justify-content:space-between;font-size:13px;color:var(--muted)}progress{width:100%;height:9px;accent-color:var(--blue);margin:10px 0 22px}
+button{font:inherit;cursor:pointer}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #f5ae36;outline-offset:4px}button:disabled{cursor:default}
+.card{display:block;background:white;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 36px #182c4309;width:100%;min-height:300px;padding:32px;color:var(--ink);text-align:center}
+.card>span{display:block}.card-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.prompt{font-size:clamp(25px,4.4vw,42px);font-weight:720;letter-spacing:-.025em;line-height:1.3;margin:20px auto;max-width:720px}
+.hint{font-size:14px;color:var(--muted)}.answer{border-top:1px solid var(--line);padding-top:20px;margin-top:22px;font-size:23px;font-weight:650}.example{display:block;font-size:16px;font-weight:400;margin-top:13px}.translation{display:block;color:var(--muted);font-size:14px;font-weight:400;margin-top:3px}
+.actions{display:flex;gap:12px;justify-content:center;margin:20px 0}.actions button{border:0;border-radius:13px;padding:13px 24px;font-weight:650}.again{background:#e7edf4;color:#213d5e}.known{background:var(--blue);color:white}.actions button:disabled{opacity:.4}
+.toolbar{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}.toolbar button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:9px 13px;border-radius:10px;font-size:13px}
+.footer{text-align:center;font-size:13px;margin-top:24px;color:var(--muted)}.storage-warning{background:#fff0cc;border-radius:12px;padding:12px;margin-top:20px}
+@media(max-width:600px){main{padding:24px 15px}header{display:block}.badge{display:inline-block;margin-top:7px}.controls{grid-template-columns:1fr 1fr}.controls label:first-child{grid-column:1/-1}.card{padding:24px 18px;min-height:320px}.actions button{flex:1;padding:13px 12px}}
+</style></head>
+<body><main>
+<header><div><div class="eyebrow">маленькими порциями · по разделам</div><h1>IT English</h1><p class="muted">48 слов и 18 фраз для кода, алгоритмов и работы в команде.</p></div><span class="badge">Работает без интернета</span></header>
+<div class="controls">
+<label>Раздел<select id="group"><option value="all">Все разделы</option></select></label>
+<label>Что повторять<select id="kind"><option value="all">Слова и фразы</option><option value="word">Только слова</option><option value="phrase">Только фразы</option></select></label>
+<label>Направление<select id="direction"><option value="ru">Русский → English</option><option value="en">English → русский</option></select></label>
+</div>
+<div class="progress-row"><span id="progressText" aria-live="polite"></span><span id="roundText"></span></div>
+<progress id="progress" aria-label="Карточки, отмеченные как знакомые"></progress>
+<button class="card" id="card" aria-label="Показать ответ">
+<span class="card-label" id="cardLabel"></span><span class="prompt" id="prompt"></span><span class="hint" id="hint">Вспомни ответ и нажми на карточку</span>
+<span class="answer" id="answer" hidden><span id="answerText"></span><span class="example" id="example"></span><span class="translation" id="translation"></span></span>
+</button>
+<div class="actions"><button class="again" id="again" disabled>Ещё раз · 2</button><button class="known" id="known" disabled>Знаю · 1</button></div>
+<div class="toolbar"><button id="remaining">Повторить незнакомые</button><button id="all">Вся подборка заново</button><button id="reset">Сбросить отметки</button></div>
+<p class="footer">Пробел — ответ · 1 — знаю · 2 — ещё раз. Выбирай один раздел на подход.<br>Отметки хранятся в этом браузере. «Знаю» — твоя оценка, а не результат экзамена.<br><a href="Базовый%20IT-минимум.md">Открыть словарь</a></p>
+<p class="storage-warning" id="storageWarning" hidden>Браузер не разрешил сохранить отметки. Повторение работает, но после закрытия страницы прогресс может исчезнуть.</p>
+<noscript>Для карточек нужен JavaScript. Слова и фразы доступны в файле «Базовый IT-минимум.md».</noscript>
+</main>
+<script id="vocabulary" type="application/json">[
+  {
+    "id": "word-computer",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "computer",
+    "ru": "компьютер",
+    "example": "My computer is slow.",
+    "translation": "Мой компьютер работает медленно."
+  },
+  {
+    "id": "word-keyboard",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "keyboard",
+    "ru": "клавиатура",
+    "example": "Use the keyboard.",
+    "translation": "Используй клавиатуру."
+  },
+  {
+    "id": "word-screen",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "screen",
+    "ru": "экран",
+    "example": "Look at the screen.",
+    "translation": "Посмотри на экран."
+  },
+  {
+    "id": "word-mouse",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "mouse",
+    "ru": "мышь",
+    "example": "Click with the mouse.",
+    "translation": "Щёлкни мышью."
+  },
+  {
+    "id": "word-memory",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "memory",
+    "ru": "память; оперативная память",
+    "example": "The program uses too much memory.",
+    "translation": "Программа использует слишком много памяти."
+  },
+  {
+    "id": "word-processor",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "processor",
+    "ru": "процессор",
+    "example": "The processor is fast.",
+    "translation": "Процессор быстрый."
+  },
+  {
+    "id": "word-storage",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "storage",
+    "ru": "хранилище; место для хранения данных",
+    "example": "We need more storage.",
+    "translation": "Нам нужно больше места для хранения данных."
+  },
+  {
+    "id": "word-network",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "network",
+    "ru": "сеть",
+    "example": "Check the network connection.",
+    "translation": "Проверь подключение к сети."
+  },
+  {
+    "id": "phrase-1-1",
+    "kind": "phrase",
+    "group": "Компьютер и сеть",
+    "en": "My computer is slow.",
+    "ru": "Мой компьютер работает медленно.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-1-2",
+    "kind": "phrase",
+    "group": "Компьютер и сеть",
+    "en": "I can't connect to the network.",
+    "ru": "Я не могу подключиться к сети.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-1-3",
+    "kind": "phrase",
+    "group": "Компьютер и сеть",
+    "en": "How much memory does it need?",
+    "ru": "Сколько памяти для этого нужно?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-code",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "code",
+    "ru": "код",
+    "example": "This code is easy to read.",
+    "translation": "Этот код легко читать."
+  },
+  {
+    "id": "word-program",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "program",
+    "ru": "программа",
+    "example": "Run the program.",
+    "translation": "Запусти программу."
+  },
+  {
+    "id": "word-variable",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "variable",
+    "ru": "переменная",
+    "example": "This variable stores a number.",
+    "translation": "Эта переменная хранит число."
+  },
+  {
+    "id": "word-function",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "function",
+    "ru": "функция",
+    "example": "Call this function.",
+    "translation": "Вызови эту функцию."
+  },
+  {
+    "id": "word-loop",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "loop",
+    "ru": "цикл",
+    "example": "This loop runs ten times.",
+    "translation": "Этот цикл выполняется десять раз."
+  },
+  {
+    "id": "word-condition",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "condition",
+    "ru": "условие",
+    "example": "Check the condition.",
+    "translation": "Проверь условие."
+  },
+  {
+    "id": "word-value",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "value",
+    "ru": "значение",
+    "example": "The value is zero.",
+    "translation": "Значение равно нулю."
+  },
+  {
+    "id": "word-return",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "return",
+    "ru": "возвращать; возврат из функции",
+    "example": "Return the result.",
+    "translation": "Верни результат."
+  },
+  {
+    "id": "phrase-2-1",
+    "kind": "phrase",
+    "group": "Код и управление",
+    "en": "This function returns a value.",
+    "ru": "Эта функция возвращает значение.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-2-2",
+    "kind": "phrase",
+    "group": "Код и управление",
+    "en": "The loop stops when the condition is false.",
+    "ru": "Цикл останавливается, когда условие ложно.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-2-3",
+    "kind": "phrase",
+    "group": "Код и управление",
+    "en": "Can you explain this code?",
+    "ru": "Можешь объяснить этот код?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-data",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "data",
+    "ru": "данные",
+    "example": "Read the data from a file.",
+    "translation": "Прочитай данные из файла."
+  },
+  {
+    "id": "word-array",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "array",
+    "ru": "массив",
+    "example": "Create an array of numbers.",
+    "translation": "Создай массив чисел."
+  },
+  {
+    "id": "word-string",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "string",
+    "ru": "строка (текст)",
+    "example": "The string is empty.",
+    "translation": "Строка пустая."
+  },
+  {
+    "id": "word-number",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "number",
+    "ru": "число",
+    "example": "Enter a number.",
+    "translation": "Введи число."
+  },
+  {
+    "id": "word-index",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "index",
+    "ru": "индекс",
+    "example": "The index starts at zero.",
+    "translation": "Индекс начинается с нуля."
+  },
+  {
+    "id": "word-element",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "element",
+    "ru": "элемент",
+    "example": "Get the first element.",
+    "translation": "Получи первый элемент."
+  },
+  {
+    "id": "word-input",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "input",
+    "ru": "входные данные; ввод",
+    "example": "Check the input format.",
+    "translation": "Проверь формат входных данных."
+  },
+  {
+    "id": "word-output",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "output",
+    "ru": "выходные данные; вывод",
+    "example": "Print the output.",
+    "translation": "Выведи результат."
+  },
+  {
+    "id": "phrase-3-1",
+    "kind": "phrase",
+    "group": "Данные и ввод-вывод",
+    "en": "What is the input format?",
+    "ru": "Какой формат входных данных?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-3-2",
+    "kind": "phrase",
+    "group": "Данные и ввод-вывод",
+    "en": "The array contains ten elements.",
+    "ru": "Массив содержит десять элементов.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-3-3",
+    "kind": "phrase",
+    "group": "Данные и ввод-вывод",
+    "en": "The index starts at zero.",
+    "ru": "Индекс начинается с нуля.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-algorithm",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "algorithm",
+    "ru": "алгоритм",
+    "example": "Explain the algorithm.",
+    "translation": "Объясни алгоритм."
+  },
+  {
+    "id": "word-sort",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "sort",
+    "ru": "сортировать; сортировка",
+    "example": "Sort the array.",
+    "translation": "Отсортируй массив."
+  },
+  {
+    "id": "word-search",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "search",
+    "ru": "искать; поиск",
+    "example": "Search for a value.",
+    "translation": "Найди значение."
+  },
+  {
+    "id": "word-compare",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "compare",
+    "ru": "сравнивать",
+    "example": "Compare two numbers.",
+    "translation": "Сравни два числа."
+  },
+  {
+    "id": "word-insert",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "insert",
+    "ru": "вставлять; добавлять",
+    "example": "Insert a new element.",
+    "translation": "Добавь новый элемент."
+  },
+  {
+    "id": "word-remove",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "remove",
+    "ru": "удалять",
+    "example": "Remove the last element.",
+    "translation": "Удали последний элемент."
+  },
+  {
+    "id": "word-queue",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "queue",
+    "ru": "очередь",
+    "example": "Add the task to the queue.",
+    "translation": "Добавь задачу в очередь."
+  },
+  {
+    "id": "word-stack",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "stack",
+    "ru": "стек",
+    "example": "The stack is empty.",
+    "translation": "Стек пуст."
+  },
+  {
+    "id": "phrase-4-1",
+    "kind": "phrase",
+    "group": "Алгоритмы и структуры",
+    "en": "The algorithm runs in linear time.",
+    "ru": "Алгоритм работает за линейное время.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-4-2",
+    "kind": "phrase",
+    "group": "Алгоритмы и структуры",
+    "en": "First, we sort the array.",
+    "ru": "Сначала мы сортируем массив.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-4-3",
+    "kind": "phrase",
+    "group": "Алгоритмы и структуры",
+    "en": "We compare two values.",
+    "ru": "Мы сравниваем два значения.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-error",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "error",
+    "ru": "ошибка",
+    "example": "There is an error in this line.",
+    "translation": "В этой строке ошибка."
+  },
+  {
+    "id": "word-bug",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "bug",
+    "ru": "ошибка; дефект в программе",
+    "example": "I found a bug.",
+    "translation": "Я нашёл ошибку в программе."
+  },
+  {
+    "id": "word-debug",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "debug",
+    "ru": "отлаживать",
+    "example": "We need to debug the program.",
+    "translation": "Нам нужно отладить программу."
+  },
+  {
+    "id": "word-test",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "test",
+    "ru": "тест; проверять",
+    "example": "Run the test.",
+    "translation": "Запусти тест."
+  },
+  {
+    "id": "word-expected",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "expected",
+    "ru": "ожидаемый",
+    "example": "This is the expected result.",
+    "translation": "Это ожидаемый результат."
+  },
+  {
+    "id": "word-actual",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "actual",
+    "ru": "фактический (не «актуальный»)",
+    "example": "Compare the actual and expected results.",
+    "translation": "Сравни фактический и ожидаемый результаты."
+  },
+  {
+    "id": "word-fail",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "fail",
+    "ru": "не проходить; завершаться неудачей",
+    "example": "Some tests fail.",
+    "translation": "Некоторые тесты не проходят."
+  },
+  {
+    "id": "word-fix",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "fix",
+    "ru": "исправлять; исправление",
+    "example": "Fix the bug.",
+    "translation": "Исправь ошибку."
+  },
+  {
+    "id": "phrase-5-1",
+    "kind": "phrase",
+    "group": "Ошибки и тестирование",
+    "en": "I found a bug.",
+    "ru": "Я нашёл ошибку в программе.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-5-2",
+    "kind": "phrase",
+    "group": "Ошибки и тестирование",
+    "en": "The test failed.",
+    "ru": "Тест не прошёл.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-5-3",
+    "kind": "phrase",
+    "group": "Ошибки и тестирование",
+    "en": "The actual output differs from the expected output.",
+    "ru": "Фактический вывод отличается от ожидаемого.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-task",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "task",
+    "ru": "задача",
+    "example": "This task is almost done.",
+    "translation": "Эта задача почти готова."
+  },
+  {
+    "id": "word-requirement",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "requirement",
+    "ru": "требование",
+    "example": "Read the requirements.",
+    "translation": "Прочитай требования."
+  },
+  {
+    "id": "word-deadline",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "deadline",
+    "ru": "срок выполнения; дедлайн",
+    "example": "When is the deadline?",
+    "translation": "Когда крайний срок?"
+  },
+  {
+    "id": "word-change",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "change",
+    "ru": "изменение; менять",
+    "example": "Save your changes.",
+    "translation": "Сохрани изменения."
+  },
+  {
+    "id": "word-commit",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "commit",
+    "ru": "коммит; зафиксировать изменения в Git",
+    "example": "Create a commit.",
+    "translation": "Создай коммит."
+  },
+  {
+    "id": "word-branch",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "branch",
+    "ru": "ветка Git",
+    "example": "Create a new branch.",
+    "translation": "Создай новую ветку."
+  },
+  {
+    "id": "word-merge",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "merge",
+    "ru": "объединять; слияние веток",
+    "example": "Merge the branches.",
+    "translation": "Объедини ветки."
+  },
+  {
+    "id": "word-review",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "review",
+    "ru": "проверка; просматривать код",
+    "example": "Please review my code.",
+    "translation": "Пожалуйста, проверь мой код."
+  },
+  {
+    "id": "phrase-6-1",
+    "kind": "phrase",
+    "group": "Задачи и командная работа",
+    "en": "I am working on this task.",
+    "ru": "Я работаю над этой задачей.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-6-2",
+    "kind": "phrase",
+    "group": "Задачи и командная работа",
+    "en": "Could you review my changes?",
+    "ru": "Можешь проверить мои изменения?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-6-3",
+    "kind": "phrase",
+    "group": "Задачи и командная работа",
+    "en": "I need more time to finish.",
+    "ru": "Мне нужно больше времени, чтобы закончить.",
+    "example": "",
+    "translation": ""
+  }
+]</script>
+<script>
+'use strict';
+const WORDS = JSON.parse(document.getElementById('vocabulary').textContent);
+const byId = new Map(WORDS.map(word => [word.id, word]));
+const $ = id => document.getElementById(id);
+const KEY = 'itmo-it-english-v1';
+let learned = {}, queue = [], againIds = [], cursor = 0, revealed = false;
+try { const value = JSON.parse(localStorage.getItem(KEY) || '{}'); if (value && typeof value === 'object' && !Array.isArray(value)) learned = value; }
+catch { $('storageWarning').hidden = false; }
+for (const group of new Set(WORDS.map(word => word.group))) { const option = document.createElement('option'); option.value = group; option.textContent = group; $('group').append(option); }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(learned)); } catch { $('storageWarning').hidden = false; } }
+function selection() { return WORDS.filter(word => ($('group').value === 'all' || word.group === $('group').value) && ($('kind').value === 'all' || word.kind === $('kind').value)); }
+function shuffled(ids) { const result = [...ids]; for (let i = result.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [result[i], result[j]] = [result[j], result[i]]; } return result; }
+function start(onlyUnknown = true) { queue = shuffled(selection().filter(word => !onlyUnknown || !learned[word.id]).map(word => word.id)); againIds = []; cursor = 0; render(); }
+function render() {
+  revealed = false; $('answer').hidden = true; $('known').disabled = true; $('again').disabled = true;
+  const selected = selection(), count = selected.filter(word => learned[word.id]).length;
+  $('progress').max = selected.length || 1; $('progress').value = count;
+  $('progressText').textContent = `Знакомо: ${count} из ${selected.length}`;
+  $('roundText').textContent = cursor < queue.length ? `В серии: ${cursor + 1} / ${queue.length}` : 'Серия завершена';
+  const word = byId.get(queue[cursor]); $('card').disabled = !word;
+  if (!word) { $('cardLabel').textContent = 'Готово'; $('prompt').textContent = 'Подборка пройдена'; $('hint').textContent = 'Выбери другой раздел или повтори всю подборку.'; return; }
+  $('cardLabel').textContent = `${word.group} · ${word.kind === 'word' ? 'слово' : 'фраза'}`;
+  $('prompt').textContent = word[$('direction').value]; $('hint').textContent = 'Вспомни ответ и нажми на карточку';
+  $('answerText').textContent = word[$('direction').value === 'ru' ? 'en' : 'ru'];
+  $('example').textContent = word.example; $('translation').textContent = word.translation;
+  $('example').hidden = !word.example; $('translation').hidden = !word.translation;
+  $('card').setAttribute('aria-label', 'Показать ответ');
+}
+function reveal() { if (!byId.has(queue[cursor]) || revealed) return; revealed = true; $('answer').hidden = false; $('hint').textContent = 'Оцени свой ответ'; $('known').disabled = false; $('again').disabled = false; $('card').setAttribute('aria-label', 'Ответ показан'); }
+function grade(known) { if (!revealed) return; const id = queue[cursor]; if (known) learned[id] = true; else { delete learned[id]; againIds.push(id); } save(); cursor++; if (cursor >= queue.length && againIds.length) { queue = shuffled(againIds); againIds = []; cursor = 0; } render(); if (!$('card').disabled) $('card').focus({preventScroll:true}); }
+$('card').addEventListener('click', reveal);
+$('known').addEventListener('click', () => grade(true)); $('again').addEventListener('click', () => grade(false));
+$('group').addEventListener('change', () => start()); $('kind').addEventListener('change', () => start()); $('direction').addEventListener('change', render);
+$('remaining').addEventListener('click', () => start()); $('all').addEventListener('click', () => start(false));
+$('reset').addEventListener('click', () => { if (confirm('Сбросить все отметки «Знаю»?')) { learned = {}; save(); start(); } });
+document.addEventListener('keydown', event => { if (event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.target.closest('select,a,input,textarea')) return; if (event.code === 'Space' || event.key === 'Enter') { if (event.target.closest('button') && event.target.id !== 'card') return; event.preventDefault(); reveal(); } else if (event.key === '1') grade(true); else if (event.key === '2') grade(false); });
+start();
+</script></body></html>

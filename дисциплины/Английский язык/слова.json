@@ -1,0 +1,596 @@
+[
+  {
+    "id": "word-computer",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "computer",
+    "ru": "компьютер",
+    "example": "My computer is slow.",
+    "translation": "Мой компьютер работает медленно."
+  },
+  {
+    "id": "word-keyboard",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "keyboard",
+    "ru": "клавиатура",
+    "example": "Use the keyboard.",
+    "translation": "Используй клавиатуру."
+  },
+  {
+    "id": "word-screen",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "screen",
+    "ru": "экран",
+    "example": "Look at the screen.",
+    "translation": "Посмотри на экран."
+  },
+  {
+    "id": "word-mouse",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "mouse",
+    "ru": "мышь",
+    "example": "Click with the mouse.",
+    "translation": "Щёлкни мышью."
+  },
+  {
+    "id": "word-memory",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "memory",
+    "ru": "память; оперативная память",
+    "example": "The program uses too much memory.",
+    "translation": "Программа использует слишком много памяти."
+  },
+  {
+    "id": "word-processor",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "processor",
+    "ru": "процессор",
+    "example": "The processor is fast.",
+    "translation": "Процессор быстрый."
+  },
+  {
+    "id": "word-storage",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "storage",
+    "ru": "хранилище; место для хранения данных",
+    "example": "We need more storage.",
+    "translation": "Нам нужно больше места для хранения данных."
+  },
+  {
+    "id": "word-network",
+    "kind": "word",
+    "group": "Компьютер и сеть",
+    "en": "network",
+    "ru": "сеть",
+    "example": "Check the network connection.",
+    "translation": "Проверь подключение к сети."
+  },
+  {
+    "id": "phrase-1-1",
+    "kind": "phrase",
+    "group": "Компьютер и сеть",
+    "en": "My computer is slow.",
+    "ru": "Мой компьютер работает медленно.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-1-2",
+    "kind": "phrase",
+    "group": "Компьютер и сеть",
+    "en": "I can't connect to the network.",
+    "ru": "Я не могу подключиться к сети.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-1-3",
+    "kind": "phrase",
+    "group": "Компьютер и сеть",
+    "en": "How much memory does it need?",
+    "ru": "Сколько памяти для этого нужно?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-code",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "code",
+    "ru": "код",
+    "example": "This code is easy to read.",
+    "translation": "Этот код легко читать."
+  },
+  {
+    "id": "word-program",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "program",
+    "ru": "программа",
+    "example": "Run the program.",
+    "translation": "Запусти программу."
+  },
+  {
+    "id": "word-variable",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "variable",
+    "ru": "переменная",
+    "example": "This variable stores a number.",
+    "translation": "Эта переменная хранит число."
+  },
+  {
+    "id": "word-function",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "function",
+    "ru": "функция",
+    "example": "Call this function.",
+    "translation": "Вызови эту функцию."
+  },
+  {
+    "id": "word-loop",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "loop",
+    "ru": "цикл",
+    "example": "This loop runs ten times.",
+    "translation": "Этот цикл выполняется десять раз."
+  },
+  {
+    "id": "word-condition",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "condition",
+    "ru": "условие",
+    "example": "Check the condition.",
+    "translation": "Проверь условие."
+  },
+  {
+    "id": "word-value",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "value",
+    "ru": "значение",
+    "example": "The value is zero.",
+    "translation": "Значение равно нулю."
+  },
+  {
+    "id": "word-return",
+    "kind": "word",
+    "group": "Код и управление",
+    "en": "return",
+    "ru": "возвращать; возврат из функции",
+    "example": "Return the result.",
+    "translation": "Верни результат."
+  },
+  {
+    "id": "phrase-2-1",
+    "kind": "phrase",
+    "group": "Код и управление",
+    "en": "This function returns a value.",
+    "ru": "Эта функция возвращает значение.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-2-2",
+    "kind": "phrase",
+    "group": "Код и управление",
+    "en": "The loop stops when the condition is false.",
+    "ru": "Цикл останавливается, когда условие ложно.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-2-3",
+    "kind": "phrase",
+    "group": "Код и управление",
+    "en": "Can you explain this code?",
+    "ru": "Можешь объяснить этот код?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-data",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "data",
+    "ru": "данные",
+    "example": "Read the data from a file.",
+    "translation": "Прочитай данные из файла."
+  },
+  {
+    "id": "word-array",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "array",
+    "ru": "массив",
+    "example": "Create an array of numbers.",
+    "translation": "Создай массив чисел."
+  },
+  {
+    "id": "word-string",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "string",
+    "ru": "строка (текст)",
+    "example": "The string is empty.",
+    "translation": "Строка пустая."
+  },
+  {
+    "id": "word-number",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "number",
+    "ru": "число",
+    "example": "Enter a number.",
+    "translation": "Введи число."
+  },
+  {
+    "id": "word-index",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "index",
+    "ru": "индекс",
+    "example": "The index starts at zero.",
+    "translation": "Индекс начинается с нуля."
+  },
+  {
+    "id": "word-element",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "element",
+    "ru": "элемент",
+    "example": "Get the first element.",
+    "translation": "Получи первый элемент."
+  },
+  {
+    "id": "word-input",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "input",
+    "ru": "входные данные; ввод",
+    "example": "Check the input format.",
+    "translation": "Проверь формат входных данных."
+  },
+  {
+    "id": "word-output",
+    "kind": "word",
+    "group": "Данные и ввод-вывод",
+    "en": "output",
+    "ru": "выходные данные; вывод",
+    "example": "Print the output.",
+    "translation": "Выведи результат."
+  },
+  {
+    "id": "phrase-3-1",
+    "kind": "phrase",
+    "group": "Данные и ввод-вывод",
+    "en": "What is the input format?",
+    "ru": "Какой формат входных данных?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-3-2",
+    "kind": "phrase",
+    "group": "Данные и ввод-вывод",
+    "en": "The array contains ten elements.",
+    "ru": "Массив содержит десять элементов.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-3-3",
+    "kind": "phrase",
+    "group": "Данные и ввод-вывод",
+    "en": "The index starts at zero.",
+    "ru": "Индекс начинается с нуля.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-algorithm",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "algorithm",
+    "ru": "алгоритм",
+    "example": "Explain the algorithm.",
+    "translation": "Объясни алгоритм."
+  },
+  {
+    "id": "word-sort",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "sort",
+    "ru": "сортировать; сортировка",
+    "example": "Sort the array.",
+    "translation": "Отсортируй массив."
+  },
+  {
+    "id": "word-search",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "search",
+    "ru": "искать; поиск",
+    "example": "Search for a value.",
+    "translation": "Найди значение."
+  },
+  {
+    "id": "word-compare",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "compare",
+    "ru": "сравнивать",
+    "example": "Compare two numbers.",
+    "translation": "Сравни два числа."
+  },
+  {
+    "id": "word-insert",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "insert",
+    "ru": "вставлять; добавлять",
+    "example": "Insert a new element.",
+    "translation": "Добавь новый элемент."
+  },
+  {
+    "id": "word-remove",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "remove",
+    "ru": "удалять",
+    "example": "Remove the last element.",
+    "translation": "Удали последний элемент."
+  },
+  {
+    "id": "word-queue",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "queue",
+    "ru": "очередь",
+    "example": "Add the task to the queue.",
+    "translation": "Добавь задачу в очередь."
+  },
+  {
+    "id": "word-stack",
+    "kind": "word",
+    "group": "Алгоритмы и структуры",
+    "en": "stack",
+    "ru": "стек",
+    "example": "The stack is empty.",
+    "translation": "Стек пуст."
+  },
+  {
+    "id": "phrase-4-1",
+    "kind": "phrase",
+    "group": "Алгоритмы и структуры",
+    "en": "The algorithm runs in linear time.",
+    "ru": "Алгоритм работает за линейное время.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-4-2",
+    "kind": "phrase",
+    "group": "Алгоритмы и структуры",
+    "en": "First, we sort the array.",
+    "ru": "Сначала мы сортируем массив.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-4-3",
+    "kind": "phrase",
+    "group": "Алгоритмы и структуры",
+    "en": "We compare two values.",
+    "ru": "Мы сравниваем два значения.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-error",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "error",
+    "ru": "ошибка",
+    "example": "There is an error in this line.",
+    "translation": "В этой строке ошибка."
+  },
+  {
+    "id": "word-bug",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "bug",
+    "ru": "ошибка; дефект в программе",
+    "example": "I found a bug.",
+    "translation": "Я нашёл ошибку в программе."
+  },
+  {
+    "id": "word-debug",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "debug",
+    "ru": "отлаживать",
+    "example": "We need to debug the program.",
+    "translation": "Нам нужно отладить программу."
+  },
+  {
+    "id": "word-test",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "test",
+    "ru": "тест; проверять",
+    "example": "Run the test.",
+    "translation": "Запусти тест."
+  },
+  {
+    "id": "word-expected",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "expected",
+    "ru": "ожидаемый",
+    "example": "This is the expected result.",
+    "translation": "Это ожидаемый результат."
+  },
+  {
+    "id": "word-actual",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "actual",
+    "ru": "фактический (не «актуальный»)",
+    "example": "Compare the actual and expected results.",
+    "translation": "Сравни фактический и ожидаемый результаты."
+  },
+  {
+    "id": "word-fail",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "fail",
+    "ru": "не проходить; завершаться неудачей",
+    "example": "Some tests fail.",
+    "translation": "Некоторые тесты не проходят."
+  },
+  {
+    "id": "word-fix",
+    "kind": "word",
+    "group": "Ошибки и тестирование",
+    "en": "fix",
+    "ru": "исправлять; исправление",
+    "example": "Fix the bug.",
+    "translation": "Исправь ошибку."
+  },
+  {
+    "id": "phrase-5-1",
+    "kind": "phrase",
+    "group": "Ошибки и тестирование",
+    "en": "I found a bug.",
+    "ru": "Я нашёл ошибку в программе.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-5-2",
+    "kind": "phrase",
+    "group": "Ошибки и тестирование",
+    "en": "The test failed.",
+    "ru": "Тест не прошёл.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-5-3",
+    "kind": "phrase",
+    "group": "Ошибки и тестирование",
+    "en": "The actual output differs from the expected output.",
+    "ru": "Фактический вывод отличается от ожидаемого.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "word-task",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "task",
+    "ru": "задача",
+    "example": "This task is almost done.",
+    "translation": "Эта задача почти готова."
+  },
+  {
+    "id": "word-requirement",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "requirement",
+    "ru": "требование",
+    "example": "Read the requirements.",
+    "translation": "Прочитай требования."
+  },
+  {
+    "id": "word-deadline",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "deadline",
+    "ru": "срок выполнения; дедлайн",
+    "example": "When is the deadline?",
+    "translation": "Когда крайний срок?"
+  },
+  {
+    "id": "word-change",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "change",
+    "ru": "изменение; менять",
+    "example": "Save your changes.",
+    "translation": "Сохрани изменения."
+  },
+  {
+    "id": "word-commit",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "commit",
+    "ru": "коммит; зафиксировать изменения в Git",
+    "example": "Create a commit.",
+    "translation": "Создай коммит."
+  },
+  {
+    "id": "word-branch",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "branch",
+    "ru": "ветка Git",
+    "example": "Create a new branch.",
+    "translation": "Создай новую ветку."
+  },
+  {
+    "id": "word-merge",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "merge",
+    "ru": "объединять; слияние веток",
+    "example": "Merge the branches.",
+    "translation": "Объедини ветки."
+  },
+  {
+    "id": "word-review",
+    "kind": "word",
+    "group": "Задачи и командная работа",
+    "en": "review",
+    "ru": "проверка; просматривать код",
+    "example": "Please review my code.",
+    "translation": "Пожалуйста, проверь мой код."
+  },
+  {
+    "id": "phrase-6-1",
+    "kind": "phrase",
+    "group": "Задачи и командная работа",
+    "en": "I am working on this task.",
+    "ru": "Я работаю над этой задачей.",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-6-2",
+    "kind": "phrase",
+    "group": "Задачи и командная работа",
+    "en": "Could you review my changes?",
+    "ru": "Можешь проверить мои изменения?",
+    "example": "",
+    "translation": ""
+  },
+  {
+    "id": "phrase-6-3",
+    "kind": "phrase",
+    "group": "Задачи и командная работа",
+    "en": "I need more time to finish.",
+    "ru": "Мне нужно больше времени, чтобы закончить.",
+    "example": "",
+    "translation": ""
+  }
+]

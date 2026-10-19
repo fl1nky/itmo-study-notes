@@ -1,0 +1,970 @@
+[
+  {
+    "id": "debug",
+    "title": "Баг, который не получается поймать",
+    "icon": "🐛",
+    "situation": "После обновления приложение иногда падает. Твоя задача — объяснить проблему и договориться о следующей проверке.",
+    "goal": "Описать ошибку, попросить данные для проверки и назвать следующий шаг.",
+    "source": [
+      "MDN · поиск ошибок",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong"
+    ],
+    "terms": [
+      [
+        "reproduce",
+        "воспроизвести",
+        "reproduce a bug",
+        "I can't reproduce the bug on my laptop.",
+        "Я не могу воспроизвести баг на своём ноутбуке."
+      ],
+      [
+        "regression",
+        "ошибка, появившаяся в ранее работавшем поведении",
+        "a regression after an update",
+        "This regression appeared after the update.",
+        "Эта регрессия появилась после обновления."
+      ],
+      [
+        "root cause",
+        "коренная причина",
+        "find the root cause",
+        "We found the root cause in the cache.",
+        "Мы нашли коренную причину в кэше."
+      ],
+      [
+        "workaround",
+        "временный обход проблемы",
+        "use a workaround",
+        "This workaround keeps the service running.",
+        "Этот обходной способ позволяет сервису работать."
+      ],
+      [
+        "edge case",
+        "крайний или необычный случай",
+        "handle an edge case",
+        "An empty file is an edge case.",
+        "Пустой файл — крайний случай."
+      ],
+      [
+        "stack trace",
+        "цепочка вызовов при ошибке",
+        "attach a stack trace",
+        "Please attach the stack trace to the issue.",
+        "Пожалуйста, приложи стек вызовов к задаче."
+      ]
+    ],
+    "verbs": [
+      [
+        "look into",
+        "разобраться; исследовать",
+        "look into something",
+        "look — looked — looked",
+        "Объект после into: look into it.",
+        "I'll look into the regression.",
+        "Я разберусь с регрессией."
+      ],
+      [
+        "run into",
+        "неожиданно столкнуться с проблемой",
+        "run into something",
+        "run — ran — run",
+        "Не разделяется: run into it.",
+        "We ran into an edge case during testing.",
+        "Во время тестирования мы столкнулись с крайним случаем."
+      ],
+      [
+        "narrow down",
+        "сузить круг возможных причин",
+        "narrow something down to something",
+        "narrow — narrowed — narrowed",
+        "Разделяется; с it: narrow it down.",
+        "We narrowed the cause down to one module.",
+        "Мы сузили поиск причины до одного модуля."
+      ]
+    ],
+    "phrases": [
+      [
+        "Could you share the steps to reproduce it?",
+        "Можешь прислать шаги для воспроизведения?"
+      ],
+      [
+        "The fix covers this edge case.",
+        "Исправление учитывает этот крайний случай."
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "Have you looked into the regression?"
+      ],
+      [
+        "B",
+        "Yes. I narrowed it down to the cache module."
+      ],
+      [
+        "A",
+        "Can you reproduce it?"
+      ],
+      [
+        "B",
+        "Only with an empty file. I'll add a test for that edge case."
+      ]
+    ],
+    "translation": "A: Разобрался с регрессией? B: Да, сузил поиск до модуля кэша. A: Можешь воспроизвести? B: Только с пустым файлом. Добавлю тест на этот крайний случай.",
+    "trap": "Workaround позволяет обойти проблему; root cause называет её причину. Обход ещё не доказывает, что причина устранена.",
+    "order": [
+      "Проблема уже упомянута. Скажи: «Я с ней разберусь», используя it.",
+      "I'll look into it."
+    ],
+    "mission": "Скажи коллеге: столкнулся с багом после обновления, сузил поиск до одного модуля, пока используешь обход. Попроси шаги воспроизведения.",
+    "sample": "We ran into a regression after the update. I narrowed it down to one module. We have a workaround for now. Could you share the steps to reproduce it?",
+    "file": "01_debug.md"
+  },
+  {
+    "id": "design",
+    "title": "Код, который легко менять",
+    "icon": "🧩",
+    "situation": "Нужно упростить большой модуль, сохранив его поведение. Объясни, что изменится и какой компромисс придётся принять.",
+    "goal": "Обсудить устройство кода и предложить небольшой рефакторинг.",
+    "source": [
+      "Martin Fowler · Refactoring",
+      "https://refactoring.com/"
+    ],
+    "terms": [
+      [
+        "dependency",
+        "зависимость от другого компонента или пакета",
+        "remove a dependency",
+        "This dependency is no longer needed.",
+        "Эта зависимость больше не нужна."
+      ],
+      [
+        "refactor",
+        "изменить внутреннюю структуру кода, сохранив его наблюдаемое поведение",
+        "refactor a function",
+        "I want to refactor this function.",
+        "Я хочу отрефакторить эту функцию."
+      ],
+      [
+        "maintainable",
+        "удобный для сопровождения",
+        "keep code maintainable",
+        "Smaller modules make the code more maintainable.",
+        "Небольшие модули делают код удобнее для сопровождения."
+      ],
+      [
+        "coupling",
+        "связанность компонентов",
+        "reduce coupling",
+        "We reduced coupling between the modules.",
+        "Мы уменьшили связанность модулей."
+      ],
+      [
+        "boilerplate",
+        "повторяющийся шаблонный код",
+        "generate boilerplate",
+        "The framework generates the boilerplate.",
+        "Фреймворк генерирует шаблонный код."
+      ],
+      [
+        "trade-off",
+        "компромисс между свойствами",
+        "a trade-off between speed and memory",
+        "There is a trade-off between speed and memory.",
+        "Здесь есть компромисс между скоростью и памятью."
+      ]
+    ],
+    "verbs": [
+      [
+        "set up",
+        "настроить; подготовить",
+        "set something up",
+        "set — set — set",
+        "Разделяется; с it: set it up.",
+        "Let's set up a small test project.",
+        "Давай подготовим небольшой тестовый проект."
+      ],
+      [
+        "break down",
+        "разбить на понятные части",
+        "break something down into parts",
+        "break — broke — broken",
+        "Разделяется: break it down into smaller tasks.",
+        "We can break the module down into smaller parts.",
+        "Мы можем разбить модуль на меньшие части."
+      ],
+      [
+        "clean up",
+        "привести в порядок",
+        "clean something up",
+        "clean — cleaned — cleaned",
+        "Разделяется; с it: clean it up.",
+        "I'll clean up the duplicate code.",
+        "Я приведу в порядок дублирующийся код."
+      ]
+    ],
+    "phrases": [
+      [
+        "This change makes the code easier to maintain.",
+        "Это изменение делает код удобнее для сопровождения."
+      ],
+      [
+        "What trade-off are we making here?",
+        "На какой компромисс мы здесь идём?"
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "Why do you want to refactor this module?"
+      ],
+      [
+        "B",
+        "It has too much boilerplate and too many dependencies."
+      ],
+      [
+        "A",
+        "Can we break it down into smaller parts?"
+      ],
+      [
+        "B",
+        "Yes. I'll set up the tests first, then clean it up."
+      ]
+    ],
+    "translation": "A: Почему хочешь изменить структуру модуля? B: В нём слишком много шаблонного кода и зависимостей. A: Можем разбить на меньшие части? B: Да. Сначала настрою тесты, затем приведу его в порядок.",
+    "trap": "Глагол set up пишется раздельно. Существительное setup — настройка или конфигурация. Break down здесь означает разбиение, хотя в другой ситуации может означать поломку.",
+    "order": [
+      "Проект уже упомянут. Скажи «Я настрою его» с it.",
+      "I'll set it up."
+    ],
+    "mission": "Предложи разбить модуль на части, убрать зависимость и сначала настроить тесты. Спроси о компромиссе.",
+    "sample": "Let's break the module down into smaller parts and remove this dependency. I'll set up the tests first. What trade-off are we making here?",
+    "file": "02_design.md"
+  },
+  {
+    "id": "web",
+    "title": "Медленный API и странный ответ",
+    "icon": "🌐",
+    "situation": "Клиент долго ждёт ответ сервера. Нужно описать запрос, содержимое ответа и возможное ограничение производительности.",
+    "goal": "Простыми фразами объяснить обмен между клиентом и сервером.",
+    "source": [
+      "MDN · HTTP",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
+    ],
+    "terms": [
+      [
+        "endpoint",
+        "адрес или точка API, через которую доступна операция",
+        "call an endpoint",
+        "This endpoint returns a list of users.",
+        "Эта точка API возвращает список пользователей."
+      ],
+      [
+        "payload",
+        "полезное содержимое передаваемого сообщения",
+        "inspect the payload",
+        "The payload contains a user ID.",
+        "Полезная нагрузка содержит ID пользователя."
+      ],
+      [
+        "request",
+        "запрос",
+        "send a request",
+        "The client sends a request to the server.",
+        "Клиент отправляет запрос серверу."
+      ],
+      [
+        "response",
+        "ответ",
+        "receive a response",
+        "The response contains an error message.",
+        "Ответ содержит сообщение об ошибке."
+      ],
+      [
+        "latency",
+        "задержка",
+        "reduce latency",
+        "High latency makes the app feel slow.",
+        "Из-за большой задержки приложение кажется медленным."
+      ],
+      [
+        "throughput",
+        "объём обработанной работы за единицу времени",
+        "increase throughput",
+        "The new server improves throughput.",
+        "Новый сервер повышает пропускную способность."
+      ]
+    ],
+    "verbs": [
+      [
+        "send back",
+        "отправить в ответ",
+        "send something back",
+        "send — sent — sent",
+        "Разделяется; с it: send it back.",
+        "The server sends back an error message.",
+        "Сервер отправляет в ответ сообщение об ошибке."
+      ],
+      [
+        "slow down",
+        "замедлиться; замедлить",
+        "slow down / slow something down",
+        "slow — slowed — slowed",
+        "Без объекта: the app slows down; с объектом: slow it down.",
+        "Large requests slow the service down.",
+        "Большие запросы замедляют сервис."
+      ],
+      [
+        "hook up",
+        "подключить; связать компоненты",
+        "hook something up to something",
+        "hook — hooked — hooked",
+        "Разговорное; с it: hook it up to the test API.",
+        "I'll hook the client up to the test API.",
+        "Я подключу клиент к тестовому API."
+      ]
+    ],
+    "phrases": [
+      [
+        "What does this endpoint return?",
+        "Что возвращает эта точка API?"
+      ],
+      [
+        "The server is taking too long to respond.",
+        "Сервер слишком долго отвечает."
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "What does this endpoint return?"
+      ],
+      [
+        "B",
+        "It sends back a list of users."
+      ],
+      [
+        "A",
+        "Why is the response so slow?"
+      ],
+      [
+        "B",
+        "The payload is large. I'll hook the client up to the test API and check the latency."
+      ]
+    ],
+    "translation": "A: Что возвращает эта точка API? B: Список пользователей. A: Почему ответ такой медленный? B: Передаётся много данных. Подключу клиент к тестовому API и проверю задержку.",
+    "trap": "Latency описывает задержку, throughput — объём работы за время. Высокая пропускная способность сама по себе не гарантирует быстрый ответ на отдельный запрос. Hook up здесь про подключение компонентов.",
+    "order": [
+      "Ответ уже упомянут. Скажи «Сервер отправляет его обратно» с it.",
+      "The server sends it back."
+    ],
+    "mission": "Объясни, что клиент отправляет большой запрос, сервер долго отвечает, а ты проверишь задержку на тестовом API.",
+    "sample": "The client sends a large request, and the server is taking too long to respond. I'll hook the client up to the test API and check the latency.",
+    "file": "03_web.md"
+  },
+  {
+    "id": "security",
+    "title": "Вход, доступ и подозрительное письмо",
+    "icon": "🔐",
+    "situation": "Пользователь не может войти в сервис. Нужно различать вход в аккаунт, право доступа и подозрительное сообщение.",
+    "goal": "Описать проблему доступа и уточнить, что произошло.",
+    "source": [
+      "OWASP · риски веб-приложений",
+      "https://owasp.org/projects/top-ten"
+    ],
+    "terms": [
+      [
+        "credentials",
+        "данные для подтверждения личности при входе",
+        "enter your credentials",
+        "Never paste credentials into a public issue.",
+        "Не вставляй данные для входа в публичную задачу."
+      ],
+      [
+        "permission",
+        "право на действие",
+        "grant permission",
+        "This account needs permission to read the file.",
+        "Этому аккаунту нужно право на чтение файла."
+      ],
+      [
+        "vulnerability",
+        "уязвимость",
+        "fix a vulnerability",
+        "The update fixes a vulnerability in the library.",
+        "Обновление исправляет уязвимость в библиотеке."
+      ],
+      [
+        "phishing",
+        "обман с попыткой получить данные или заставить совершить действие",
+        "a phishing attempt",
+        "The message is a phishing attempt.",
+        "Это сообщение — попытка фишинга."
+      ],
+      [
+        "encryption",
+        "шифрование",
+        "use encryption",
+        "The service uses encryption to protect data.",
+        "Сервис использует шифрование для защиты данных."
+      ],
+      [
+        "breach",
+        "нарушение защиты; в связке data breach — инцидент раскрытия данных",
+        "a data breach",
+        "The team is investigating a data breach.",
+        "Команда расследует инцидент раскрытия данных."
+      ]
+    ],
+    "verbs": [
+      [
+        "sign in",
+        "войти в аккаунт",
+        "sign in to a service",
+        "sign — signed — signed",
+        "Здесь без прямого объекта: sign in to the account.",
+        "I can't sign in to my account.",
+        "Я не могу войти в свой аккаунт."
+      ],
+      [
+        "log out",
+        "выйти из аккаунта",
+        "log out of a service",
+        "log — logged — logged",
+        "Здесь без прямого объекта: log out of it.",
+        "Please log out of the shared account.",
+        "Пожалуйста, выйди из общего аккаунта."
+      ],
+      [
+        "lock out",
+        "заблокировать кому-либо доступ",
+        "lock someone out of something",
+        "lock — locked — locked",
+        "Разделяется; с me: lock me out.",
+        "The system locked me out after several failed attempts.",
+        "Система заблокировала мне доступ после нескольких неудачных попыток."
+      ]
+    ],
+    "phrases": [
+      [
+        "Which permission does this account need?",
+        "Какое право нужно этому аккаунту?"
+      ],
+      [
+        "This message looks suspicious.",
+        "Это сообщение выглядит подозрительно."
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "I can't sign in to my account."
+      ],
+      [
+        "B",
+        "Did the system lock you out?"
+      ],
+      [
+        "A",
+        "Yes, after several failed attempts."
+      ],
+      [
+        "B",
+        "Let's check the account status and the required permissions."
+      ]
+    ],
+    "translation": "A: Не могу войти в аккаунт. B: Система заблокировала доступ? A: Да, после нескольких неудачных попыток. B: Проверим состояние аккаунта и необходимые права.",
+    "trap": "Войти в аккаунт — sign in; окно или процедура входа — sign-in. Permission относится к разрешённому действию. Пример locked me out описывает блокировку доступа, а не потерю пароля.",
+    "order": [
+      "Скажи «Система заблокировала мне доступ» с me.",
+      "The system locked me out."
+    ],
+    "mission": "Сообщи, что не можешь войти после неудачных попыток. Уточни, какие права нужны аккаунту, и скажи, что письмо выглядит подозрительно.",
+    "sample": "I can't sign in after several failed attempts. Which permission does this account need? Also, this message looks suspicious.",
+    "file": "04_security.md"
+  },
+  {
+    "id": "cloud",
+    "title": "Релиз пошёл не по плану",
+    "icon": "☁️",
+    "situation": "После выпуска новой версии начался сбой. Нужно обсудить откат и ресурсы сервиса.",
+    "goal": "Сообщить о состоянии релиза и предложить следующий шаг.",
+    "source": [
+      "Kubernetes · Deployments и откат",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    ],
+    "terms": [
+      [
+        "deployment",
+        "развёртывание приложения или новой версии",
+        "a production deployment",
+        "The deployment starts after the tests pass.",
+        "Развёртывание начинается после успешных тестов."
+      ],
+      [
+        "container",
+        "контейнер: изолированная среда для запуска приложения",
+        "run in a container",
+        "The app runs in a container.",
+        "Приложение работает в контейнере."
+      ],
+      [
+        "instance",
+        "отдельный запущенный экземпляр ресурса или приложения",
+        "restart an instance",
+        "This instance needs more memory.",
+        "Этому экземпляру нужно больше памяти."
+      ],
+      [
+        "outage",
+        "период недоступности сервиса",
+        "a service outage",
+        "A network failure caused an outage.",
+        "Сбой сети вызвал недоступность сервиса."
+      ],
+      [
+        "scalability",
+        "способность справляться с ростом нагрузки при изменении ресурсов",
+        "test scalability",
+        "We need to test scalability before launch.",
+        "Нужно проверить масштабируемость до запуска."
+      ],
+      [
+        "rollback",
+        "откат к предыдущему состоянию",
+        "perform a rollback",
+        "The release needs a rollback.",
+        "Этот релиз требует отката."
+      ]
+    ],
+    "verbs": [
+      [
+        "roll out",
+        "выпустить; внедрить",
+        "roll something out",
+        "roll — rolled — rolled",
+        "Разделяется; с it: roll it out.",
+        "We rolled out the new version this morning.",
+        "Мы выпустили новую версию сегодня утром."
+      ],
+      [
+        "roll back",
+        "откатить к предыдущей версии или состоянию",
+        "roll something back to something",
+        "roll — rolled — rolled",
+        "Разделяется; с it: roll it back.",
+        "We may need to roll the release back.",
+        "Возможно, нам придётся откатить релиз."
+      ],
+      [
+        "scale up",
+        "увеличить масштаб или ресурсы",
+        "scale something up",
+        "scale — scaled — scaled",
+        "Разделяется; с it: scale it up. В этом примере увеличиваем ресурсы одного экземпляра.",
+        "We scaled the instance up to give it more memory.",
+        "Мы увеличили ресурсы экземпляра, добавив ему памяти."
+      ]
+    ],
+    "phrases": [
+      [
+        "The service is currently unavailable.",
+        "Сервис сейчас недоступен."
+      ],
+      [
+        "We can roll back to the previous version.",
+        "Мы можем откатиться к предыдущей версии."
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "The outage started after the deployment."
+      ],
+      [
+        "B",
+        "Can we roll back to the previous version?"
+      ],
+      [
+        "A",
+        "Yes. We rolled the update out to one instance first."
+      ],
+      [
+        "B",
+        "Let's roll it back and check the logs."
+      ]
+    ],
+    "translation": "A: Сервис стал недоступен после развёртывания. B: Можем откатиться к прошлой версии? A: Да. Сначала мы выпустили обновление только на одном экземпляре. B: Откатим его и проверим журналы.",
+    "trap": "Rollback — существительное, roll back — глагольная связка. Outage означает недоступность; медленная работа ещё не обязательно outage. Увеличение ресурсов — один из способов масштабирования.",
+    "order": [
+      "Релиз уже упомянут. Скажи «Давай его откатим» с it.",
+      "Let's roll it back."
+    ],
+    "mission": "Расскажи: выпустили новую версию, после развёртывания сервис стал недоступен. Предложи откат к предыдущей версии.",
+    "sample": "We rolled out a new version, and the service became unavailable after the deployment. We can roll back to the previous version.",
+    "file": "05_cloud.md"
+  },
+  {
+    "id": "data",
+    "title": "Данные доехали не полностью",
+    "icon": "🗄️",
+    "situation": "Импорт содержит пропуски и ненужные строки. Перед изменениями нужно обсудить копию данных и проверку результата.",
+    "goal": "Описать выборку, изменение данных и пропуски в записи.",
+    "source": [
+      "PostgreSQL · транзакции",
+      "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+    ],
+    "terms": [
+      [
+        "query",
+        "запрос к базе данных",
+        "run a query",
+        "This query returns only active users.",
+        "Этот запрос возвращает только активных пользователей."
+      ],
+      [
+        "record",
+        "запись данных",
+        "update a record",
+        "The record contains a user ID.",
+        "Запись содержит ID пользователя."
+      ],
+      [
+        "schema",
+        "структура базы или её логическая организация; в PostgreSQL также отдельное пространство имён",
+        "change the database schema",
+        "We changed the database schema.",
+        "Мы изменили схему базы данных."
+      ],
+      [
+        "transaction",
+        "группа операций, выполняемая как единое целое",
+        "commit a transaction",
+        "The transaction updates two records.",
+        "Транзакция обновляет две записи."
+      ],
+      [
+        "backup",
+        "резервная копия",
+        "restore a backup",
+        "The backup is stored on a different server.",
+        "Резервная копия хранится на другом сервере."
+      ],
+      [
+        "consistency",
+        "согласованность данных",
+        "check data consistency",
+        "We check data consistency after the import.",
+        "Мы проверяем согласованность данных после импорта."
+      ]
+    ],
+    "verbs": [
+      [
+        "back up",
+        "сделать резервную копию",
+        "back something up",
+        "back — backed — backed",
+        "Разделяется; с it: back it up.",
+        "Please back up the database before the import.",
+        "Пожалуйста, сделай резервную копию базы перед импортом."
+      ],
+      [
+        "leave out",
+        "пропустить; не включить",
+        "leave something out",
+        "leave — left — left",
+        "Разделяется; с them: leave them out.",
+        "The query leaves out inactive accounts.",
+        "Запрос не включает неактивные аккаунты."
+      ],
+      [
+        "fill in",
+        "заполнить пропущенные сведения",
+        "fill something in",
+        "fill — filled — filled",
+        "Разделяется; с it: fill it in.",
+        "We need to fill in the missing fields.",
+        "Нам нужно заполнить пропущенные поля."
+      ]
+    ],
+    "phrases": [
+      [
+        "Some fields are missing from this record.",
+        "В этой записи отсутствуют некоторые поля."
+      ],
+      [
+        "Let's check the data before we change the schema.",
+        "Давай проверим данные до изменения схемы."
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "Why does this query return fewer records?"
+      ],
+      [
+        "B",
+        "It leaves out inactive accounts."
+      ],
+      [
+        "A",
+        "Some fields are missing too."
+      ],
+      [
+        "B",
+        "Let's back up the database, then check which fields we can fill in."
+      ]
+    ],
+    "translation": "A: Почему запрос возвращает меньше записей? B: Он не включает неактивные аккаунты. A: Ещё и некоторых полей не хватает. B: Сделаем резервную копию, затем проверим, какие поля можем заполнить.",
+    "trap": "Backup — резервная копия; back up — создать её. Field — поле, record — запись. Смысл schema зависит от СУБД и контекста, поэтому уточняй, речь о структуре или пространстве имён.",
+    "order": [
+      "Данные уже упомянуты. Скажи «Сначала сделай их резервную копию» с them.",
+      "Back them up first."
+    ],
+    "mission": "Объясни, какие записи исключает запрос и каких полей не хватает. Предложи резервную копию и проверку согласованности после импорта.",
+    "sample": "The query leaves out inactive accounts, and some fields are missing. Let's back up the database and check data consistency after the import.",
+    "file": "06_data.md"
+  },
+  {
+    "id": "ai",
+    "title": "Модель уверенно выдумала ответ",
+    "icon": "🤖",
+    "situation": "Ты проверяешь небольшую модель. Ответ звучит уверенно, но содержит выдуманную ссылку. Обсуди вход, данные и проверку.",
+    "goal": "Описать работу модели и уточнить, что именно надо проверить.",
+    "source": [
+      "Google · Machine Learning Glossary",
+      "https://developers.google.com/machine-learning/glossary/"
+    ],
+    "terms": [
+      [
+        "dataset",
+        "набор данных",
+        "build a dataset",
+        "This dataset contains labelled images.",
+        "Этот набор данных содержит размеченные изображения."
+      ],
+      [
+        "training",
+        "обучение модели",
+        "training data",
+        "Training takes several hours.",
+        "Обучение занимает несколько часов."
+      ],
+      [
+        "inference",
+        "получение предсказания или ответа от уже обученной модели",
+        "run inference",
+        "Inference starts after the request arrives.",
+        "Формирование ответа моделью начинается после получения запроса."
+      ],
+      [
+        "bias",
+        "здесь: систематическое смещение или предвзятость в данных и результатах",
+        "check for bias",
+        "We found bias in the training data.",
+        "Мы нашли систематическое смещение в обучающих данных."
+      ],
+      [
+        "hallucination",
+        "правдоподобное, но выдуманное или неподтверждённое содержание в ответе модели",
+        "detect a hallucination",
+        "That invented link is a hallucination.",
+        "Эта выдуманная ссылка — галлюцинация модели."
+      ],
+      [
+        "prompt",
+        "входная инструкция или запрос к модели",
+        "write a clear prompt",
+        "A clear prompt describes the task.",
+        "Понятный запрос описывает задачу."
+      ]
+    ],
+    "verbs": [
+      [
+        "come up with",
+        "придумать; предложить",
+        "come up with something",
+        "come — came — come",
+        "Не разделяется: come up with it.",
+        "Can you come up with a better prompt?",
+        "Можешь придумать более удачный запрос?"
+      ],
+      [
+        "try out",
+        "опробовать; проверить на практике",
+        "try something out",
+        "try — tried — tried",
+        "Разделяется; с it: try it out.",
+        "Let's try the new model out on a small dataset.",
+        "Давай опробуем новую модель на небольшом наборе данных."
+      ],
+      [
+        "pick up",
+        "освоить через практику",
+        "pick something up",
+        "pick — picked — picked",
+        "Разделяется; с it: pick it up. В этом значении речь об освоении человеком.",
+        "I picked up the basics by testing small models.",
+        "Я освоил основы, проверяя небольшие модели."
+      ]
+    ],
+    "phrases": [
+      [
+        "What data was the model trained on?",
+        "На каких данных обучали модель?"
+      ],
+      [
+        "We should verify this answer against the source.",
+        "Нам стоит сверить этот ответ с источником."
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "The model gave me a link, but the page doesn't exist."
+      ],
+      [
+        "B",
+        "That looks like a hallucination. Let's verify the answer."
+      ],
+      [
+        "A",
+        "Can we try out a clearer prompt?"
+      ],
+      [
+        "B",
+        "Yes. I'll come up with one and test it on a small dataset."
+      ]
+    ],
+    "translation": "A: Модель дала ссылку, но страницы нет. B: Похоже на выдумку. Проверим ответ. A: Можем опробовать более понятный запрос? B: Да. Придумаю его и проверю на небольшом наборе данных.",
+    "trap": "Training — обучение; inference — применение обученной модели. У bias есть и другое техническое значение: параметр смещения модели; в этой теме слово относится к смещению данных и результатов.",
+    "order": [
+      "Модель уже упомянута. Скажи «Давай её опробуем» с it.",
+      "Let's try it out."
+    ],
+    "mission": "Сообщи о выдуманной ссылке, предложи проверить ответ по источнику и опробовать новый запрос на небольшом наборе данных.",
+    "sample": "That link is a hallucination. We should verify the answer against the source. Let's come up with a clearer prompt and try it out on a small dataset.",
+    "file": "07_ai.md"
+  },
+  {
+    "id": "team",
+    "title": "Стендап: успеваем или нужен разговор",
+    "icon": "💬",
+    "situation": "На короткой встрече нужно назвать препятствие, оценить оставшуюся работу и уточнить ответственность.",
+    "goal": "Дать понятный статус задачи и попросить конкретную помощь.",
+    "source": [
+      "GitHub Docs · задачи и обсуждение работы",
+      "https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues"
+    ],
+    "terms": [
+      [
+        "scope",
+        "границы и объём задачи",
+        "define the scope",
+        "The request is outside the current scope.",
+        "Этот запрос выходит за текущие границы задачи."
+      ],
+      [
+        "blocker",
+        "препятствие, которое блокирует продвижение",
+        "remove a blocker",
+        "The missing test data is a blocker.",
+        "Отсутствие тестовых данных мешает продвигаться дальше."
+      ],
+      [
+        "estimate",
+        "оценка времени или объёма работы",
+        "give an estimate",
+        "My estimate is two hours.",
+        "Моя оценка — два часа."
+      ],
+      [
+        "handoff",
+        "передача работы и контекста другому человеку или команде",
+        "a clear handoff",
+        "We need a clear handoff between the teams.",
+        "Нам нужна понятная передача работы между командами."
+      ],
+      [
+        "feedback",
+        "обратная связь",
+        "ask for feedback",
+        "Your feedback helped me improve the patch.",
+        "Твоя обратная связь помогла улучшить исправление."
+      ],
+      [
+        "ownership",
+        "ответственность за область или результат",
+        "agree on ownership",
+        "The team agreed on ownership of the service.",
+        "Команда договорилась об ответственности за сервис."
+      ]
+    ],
+    "verbs": [
+      [
+        "bring up",
+        "поднять тему в разговоре",
+        "bring something up",
+        "bring — brought — brought",
+        "Разделяется; с it: bring it up.",
+        "I'll bring the blocker up at the stand-up.",
+        "Я подниму вопрос о препятствии на стендапе."
+      ],
+      [
+        "point out",
+        "указать; обратить внимание",
+        "point something out / point out that...",
+        "point — pointed — pointed",
+        "С объектом разделяется: point it out; перед that сохраняем point out.",
+        "Could you point out the risky part?",
+        "Можешь указать на рискованную часть?"
+      ],
+      [
+        "follow up on",
+        "вернуться к вопросу и уточнить дальнейшие действия",
+        "follow up on something",
+        "follow — followed — followed",
+        "В этой конструкции объект после on: follow up on it.",
+        "I'll follow up on the estimate tomorrow.",
+        "Завтра я вернусь к вопросу об оценке сроков."
+      ]
+    ],
+    "phrases": [
+      [
+        "I'm blocked by the missing test data.",
+        "Я не могу продвинуться из-за отсутствия тестовых данных."
+      ],
+      [
+        "Could we clarify the scope before I give an estimate?",
+        "Можем уточнить объём задачи до того, как я дам оценку?"
+      ]
+    ],
+    "dialogue": [
+      [
+        "A",
+        "How is the task going?"
+      ],
+      [
+        "B",
+        "I'm blocked by the missing test data."
+      ],
+      [
+        "A",
+        "Can you give an estimate?"
+      ],
+      [
+        "B",
+        "Let's clarify the scope first. I'll follow up on it tomorrow."
+      ]
+    ],
+    "translation": "A: Как продвигается задача? B: Не могу двигаться дальше без тестовых данных. A: Можешь оценить время? B: Сначала уточним объём. Завтра я вернусь к этому вопросу.",
+    "trap": "Estimate — оценка, её стоит привязывать к известному объёму. Feedback обычно неисчисляемое: some feedback, a piece of feedback. Follow up — глагол; follow-up — существительное или определение.",
+    "order": [
+      "Препятствие уже упомянуто. Скажи «Я подниму этот вопрос» с it.",
+      "I'll bring it up."
+    ],
+    "mission": "Дай статус: что блокирует работу, какой объём нужно уточнить, когда вернёшься с оценкой. Попроси обратную связь по рискованной части.",
+    "sample": "I'm blocked by the missing test data. Could we clarify the scope before I give an estimate? I'll follow up on it tomorrow. Could you give me feedback on the risky part?",
+    "file": "08_team.md"
+  }
+]

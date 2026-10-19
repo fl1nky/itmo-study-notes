@@ -1,9 +1,0 @@
-{
-  "useMarkdownLinks": true,
-  "attachmentFolderPath": "Attachments",
-  "newFileLocation": "current",
-  "showLineNumber": true,
-  "foldHeading": true,
-  "foldIndent": true,
-  "newLinkFormat": "relative"
-}

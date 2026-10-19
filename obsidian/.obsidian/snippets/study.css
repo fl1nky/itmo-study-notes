@@ -1,7 +1,0 @@
-/* Quiet reading layout; works with the built-in theme. */
-.theme-light { --background-primary: #fcfcfd; --background-secondary: #f3f5f8; --text-normal: #243349; --interactive-accent: #4364cc; }
-body { --file-line-width: 840px; --line-height-normal: 1.7; --h1-size: 1.9em; --h2-size: 1.4em; }
-.markdown-reading-view h2 { margin-top: 2em; padding-top: .4em; border-top: 1px solid var(--background-modifier-border); }
-.markdown-rendered table { width: 100%; }
-.markdown-rendered th { background: var(--background-secondary); }
-.markdown-rendered blockquote { border-radius: 0 10px 10px 0; padding: .75em 1em; }

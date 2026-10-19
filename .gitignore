@@ -8,11 +8,8 @@ Thumbs.db
 /.local-context/
 /входящие/
 
-# Личное состояние Obsidian и входящие наброски.
-/obsidian/.obsidian/workspace*.json
-/obsidian/.obsidian/cache/
-/obsidian/.trash/
-/obsidian/05_Inbox/
+# Obsidian ведётся локально в корне проекта ИТМО, вне репозитория.
+/obsidian/
 
 # Если исходник случайно положили в каталог конспекта, Git его не добавит.
 *.pdf

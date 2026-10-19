@@ -200,6 +200,4 @@ We ran into a regression after the update. I narrowed it down to one module. We 
 - **Моя реплика или короткий диалог:** …
 - **Что пришлось подсмотреть:** …
 
-[Шаблон отдельной записи](<../Шаблоны/Словарная запись.md>) · [Тренажёр](../Повторение.html) · [Все темы](../README.md)
-
-**Справка по теме:** [MDN · поиск ошибок](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong). Примеры и диалоги составлены для этого словаря. [Источники и принципы](../Источники.md).
+[Тренажёр](../Повторение.html) · [Все темы](../README.md)

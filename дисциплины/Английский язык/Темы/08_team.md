@@ -200,6 +200,4 @@ I'm blocked by the missing test data. Could we clarify the scope before I give a
 - **Моя реплика или короткий диалог:** …
 - **Что пришлось подсмотреть:** …
 
-[Шаблон отдельной записи](<../Шаблоны/Словарная запись.md>) · [Тренажёр](../Повторение.html) · [Все темы](../README.md)
-
-**Справка по теме:** [GitHub Docs · задачи и обсуждение работы](https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues). Примеры и диалоги составлены для этого словаря. [Источники и принципы](../Источники.md).
+[Тренажёр](../Повторение.html) · [Все темы](../README.md)

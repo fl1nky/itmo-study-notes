@@ -200,6 +200,4 @@ We rolled out a new version, and the service became unavailable after the deploy
 - **Моя реплика или короткий диалог:** …
 - **Что пришлось подсмотреть:** …
 
-[Шаблон отдельной записи](<../Шаблоны/Словарная запись.md>) · [Тренажёр](../Повторение.html) · [Все темы](../README.md)
-
-**Справка по теме:** [Kubernetes · Deployments и откат](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/). Примеры и диалоги составлены для этого словаря. [Источники и принципы](../Источники.md).
+[Тренажёр](../Повторение.html) · [Все темы](../README.md)

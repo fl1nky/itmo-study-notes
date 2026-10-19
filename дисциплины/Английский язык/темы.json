@@ -5,10 +5,6 @@
     "icon": "🐛",
     "situation": "После обновления приложение иногда падает. Твоя задача — объяснить проблему и договориться о следующей проверке.",
     "goal": "Описать ошибку, попросить данные для проверки и назвать следующий шаг.",
-    "source": [
-      "MDN · поиск ошибок",
-      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong"
-    ],
     "terms": [
       [
         "reproduce",
@@ -126,10 +122,6 @@
     "icon": "🧩",
     "situation": "Нужно упростить большой модуль, сохранив его поведение. Объясни, что изменится и какой компромисс придётся принять.",
     "goal": "Обсудить устройство кода и предложить небольшой рефакторинг.",
-    "source": [
-      "Martin Fowler · Refactoring",
-      "https://refactoring.com/"
-    ],
     "terms": [
       [
         "dependency",
@@ -247,10 +239,6 @@
     "icon": "🌐",
     "situation": "Клиент долго ждёт ответ сервера. Нужно описать запрос, содержимое ответа и возможное ограничение производительности.",
     "goal": "Простыми фразами объяснить обмен между клиентом и сервером.",
-    "source": [
-      "MDN · HTTP",
-      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview"
-    ],
     "terms": [
       [
         "endpoint",
@@ -368,10 +356,6 @@
     "icon": "🔐",
     "situation": "Пользователь не может войти в сервис. Нужно различать вход в аккаунт, право доступа и подозрительное сообщение.",
     "goal": "Описать проблему доступа и уточнить, что произошло.",
-    "source": [
-      "OWASP · риски веб-приложений",
-      "https://owasp.org/projects/top-ten"
-    ],
     "terms": [
       [
         "credentials",
@@ -489,10 +473,6 @@
     "icon": "☁️",
     "situation": "После выпуска новой версии начался сбой. Нужно обсудить откат и ресурсы сервиса.",
     "goal": "Сообщить о состоянии релиза и предложить следующий шаг.",
-    "source": [
-      "Kubernetes · Deployments и откат",
-      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
-    ],
     "terms": [
       [
         "deployment",
@@ -610,10 +590,6 @@
     "icon": "🗄️",
     "situation": "Импорт содержит пропуски и ненужные строки. Перед изменениями нужно обсудить копию данных и проверку результата.",
     "goal": "Описать выборку, изменение данных и пропуски в записи.",
-    "source": [
-      "PostgreSQL · транзакции",
-      "https://www.postgresql.org/docs/current/tutorial-transactions.html"
-    ],
     "terms": [
       [
         "query",
@@ -731,10 +707,6 @@
     "icon": "🤖",
     "situation": "Ты проверяешь небольшую модель. Ответ звучит уверенно, но содержит выдуманную ссылку. Обсуди вход, данные и проверку.",
     "goal": "Описать работу модели и уточнить, что именно надо проверить.",
-    "source": [
-      "Google · Machine Learning Glossary",
-      "https://developers.google.com/machine-learning/glossary/"
-    ],
     "terms": [
       [
         "dataset",
@@ -852,10 +824,6 @@
     "icon": "💬",
     "situation": "На короткой встрече нужно назвать препятствие, оценить оставшуюся работу и уточнить ответственность.",
     "goal": "Дать понятный статус задачи и попросить конкретную помощь.",
-    "source": [
-      "GitHub Docs · задачи и обсуждение работы",
-      "https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues"
-    ],
     "terms": [
       [
         "scope",

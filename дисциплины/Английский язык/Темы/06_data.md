@@ -200,6 +200,4 @@ The query leaves out inactive accounts, and some fields are missing. Let's back 
 - **Моя реплика или короткий диалог:** …
 - **Что пришлось подсмотреть:** …
 
-[Шаблон отдельной записи](<../Шаблоны/Словарная запись.md>) · [Тренажёр](../Повторение.html) · [Все темы](../README.md)
-
-**Справка по теме:** [PostgreSQL · транзакции](https://www.postgresql.org/docs/current/tutorial-transactions.html). Примеры и диалоги составлены для этого словаря. [Источники и принципы](../Источники.md).
+[Тренажёр](../Повторение.html) · [Все темы](../README.md)

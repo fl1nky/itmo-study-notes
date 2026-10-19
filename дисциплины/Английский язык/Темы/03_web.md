@@ -200,6 +200,4 @@ The client sends a large request, and the server is taking too long to respond. 
 - **Моя реплика или короткий диалог:** …
 - **Что пришлось подсмотреть:** …
 
-[Шаблон отдельной записи](<../Шаблоны/Словарная запись.md>) · [Тренажёр](../Повторение.html) · [Все темы](../README.md)
-
-**Справка по теме:** [MDN · HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview). Примеры и диалоги составлены для этого словаря. [Источники и принципы](../Источники.md).
+[Тренажёр](../Повторение.html) · [Все темы](../README.md)
